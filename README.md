@@ -1,35 +1,70 @@
 # GITHUB
-class Flor:
-    def __init__(self, nome, cor, preco):
-        self.nome = nome
-        self.cor = cor
-        self.preco = preco
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLORICULTURA FERREIRA</title>
+    <style>
+        .flor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Escolha suas flores</h1>
+    <div class="flor" id="Buque Rosas">
+        <h2>Buque Rosas</h2>
+        <p>Cor: Vermelho</p>
+        <p>Preço: R$ 200.00</p>
+        <button onclick="adicionarAoCarrinho('RosaBuque Rosas')">Adicionar ao Carrinho</button>
+    </div>
+    <div class="flor" id="Buque Girassol mais Rosas">
+        <h2>Buque Girassol mais Rosas</h2>
+        <p>Cor: Amarelo e Vermelho</p>
+        <p>Preço: R$ 150.00</p>
+        <button onclick="adicionarAoCarrinho('Buque Girassol mais Rosas')">Adicionar ao Carrinho</button>
+    </div>
+    <div class="flor" id="Buque Girassol">
+        <h2>Buque Girassol</h2>
+        <p>Cor: Amarelo</p>
+        <p>Preço: R$ 100.00</p>
+        <button onclick="adicionarAoCarrinho('Buque Girassol')">Adicionar ao Carrinho</button>
+    </div>
+    
+    <h2>Carrinho de Compras</h2>
+    <ul id="carrinho">
+    </ul>
 
-class Carrinho:
-    def __init__(self):
-        self.itens = []
+    <script>
+        let carrinho = [];
 
-    def adicionar_flor(self, flor, quantidade):
-        self.itens.append({"flor": flor, "quantidade": quantidade})
+        function adicionarAoCarrinho(nomeFlor) {
+            carrinho.push(nomeFlor);
+            atualizarCarrinho();
+        }
 
-    def calcular_total(self):
-        total = 0
-        for item in self.itens:
-            total += item["flor"].preco * item["quantidade"]
-        return total
-
-def main():
-    rosa = Flor("Rosa", "vermelho", 2.50)
-    margarida = Flor("Margarida", "branco", 1.75)
-    girassol = Flor("Girassol", "amarelo", 3.00)
-
-    carrinho = Carrinho()
-    carrinho.adicionar_flor(rosa, 2)
-    carrinho.adicionar_flor(margarida, 3)
-    carrinho.adicionar_flor(girassol, 1)
-
-    total = carrinho.calcular_total()
-    print(f"Total da compra: R$ {total:.2f}")
-
-if __name__ == "__main__":
-    main()
+        function atualizarCarrinho() {
+            const carrinhoElemento = document.getElementById('carrinho');
+            carrinhoElemento.innerHTML = '';
+            carrinho.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                carrinhoElemento.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
